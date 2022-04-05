@@ -4,6 +4,10 @@
        "type": "mongodb",
        "url": "mongodb://localhost:27017/packed-cms"
     },
+    "jwt": {
+       "secret": "packed-cms",
+       "expiresIn": 31556926
+    },
     "panel": {
        "user": "admin",
        "pw": "admin"
