@@ -1,0 +1,11 @@
+ {
+    "name": "Packed-CMS",
+    "database": {
+       "type": "mongodb",
+       "url": "mongodb://localhost:27017/packed-cms"
+    },
+    "panel": {
+       "user": "admin",
+       "pw": "admin"
+    }
+ }
