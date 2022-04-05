@@ -1,7 +1,4 @@
-
-
-
-
+const User = require("../../database/mongodb/models/User")
 
 module.exports = {
    userPostCheck: async ({ name, email, password }) => {
@@ -47,5 +44,19 @@ module.exports = {
             }
          }
       }
-   }
+   },
+   userIsThere: async ({ name, email }) => new Promise((resolve, reject) => {
+      try {
+         User.findOne({ "$or": [{ name: name }, { email: email }] }).then(user => {
+            if (user) {
+               resolve(true)
+            } else {
+               resolve(false)
+            }
+         })
+      } catch (error) {
+         reject(false)
+         console.log(error)
+      }
+   })
 }

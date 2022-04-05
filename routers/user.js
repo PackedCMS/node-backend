@@ -30,6 +30,12 @@ router.post('/register', (req, res) => {
       })
    }
 
+   userPostCheck({ email, password, name }).then(err => {
+      if (err) return res.json(err)
+      
+
+   })
+
 })
 
 
