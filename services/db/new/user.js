@@ -12,6 +12,8 @@ module.exports = {
                error: true,
                message: "Bu kullanıcı zaten var!"
             })
+         } else {
+            
          }
       })
    })
