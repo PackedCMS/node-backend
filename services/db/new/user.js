@@ -40,6 +40,8 @@ module.exports = {
                            }
                         })
                      })
+                  } else {
+                     return resolve(response)
                   }
                })
             })
