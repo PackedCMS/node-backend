@@ -45,7 +45,7 @@ module.exports = {
          }
       }
    },
-   userIsThere: async ({ name, email }) => new Promise((resolve, reject) => {
+   userIsThere: async ({ name, email }) => new Promise((resolve) => {
       try {
          User.findOne({ "$or": [{ name: name }, { email: email }] }).then(user => {
             if (user) {
@@ -55,7 +55,7 @@ module.exports = {
             }
          })
       } catch (error) {
-         reject(false)
+         resolve(false)
          console.log(error)
       }
    })

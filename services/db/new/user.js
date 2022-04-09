@@ -20,7 +20,7 @@ module.exports = {
             passwordEncode(password).then(newpw => {
                password = newpw;
                dbNew({ data: { name, email, password }, col: users }).then(response => {
-                  if(response.error === false){
+                  if (response.error === false) {
                      const user = response.data
                      tokenEncode({
                         _id: user._id,
