@@ -1,5 +1,6 @@
 const express = require('express');
 const { userPostCheck } = require('../services/checkers/user');
+const { newUser } = require('../services/db/new/user');
 const router = express.Router();
 
 router.post('/login', (req, res) => {
@@ -32,7 +33,9 @@ router.post('/register', (req, res) => {
 
    userPostCheck({ email, password, name }).then(err => {
       if (err) return res.json(err)
-      
+      newUser({ body: req.body }).then(response => {
+         res.json(response)
+      })
 
    })
 
