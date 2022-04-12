@@ -11,6 +11,11 @@ const UserSchema = new mongoose.Schema({
       required: true,
       maxlength: 200,
    },
+   perm: {
+      type: String,
+      required: true,
+      default: "0"
+   },
    admin: {
       type: Boolean,
       default: false
