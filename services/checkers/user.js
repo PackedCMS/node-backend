@@ -1,17 +1,21 @@
 const User = require("../../database/mongodb/models/User")
+const { passwordDecode } = require("../crypto/decode")
+const { tokenEncode } = require("../jwt/encode")
 
 module.exports = {
    userPostCheck: async ({ name, email, password }) => {
       if (name) {
          if (name.length < 3) {
             return {
-               message: "Kullanıcı adı en az 3 karakter olabilir!"
+               message: "Kullanıcı adı en az 3 karakter olabilir!",
+               error: true
             }
          }
 
          if (name.length > 32) {
             return {
-               message: "Kullanıcı adı en fazla 32 karakter olabilir!"
+               message: "Kullanıcı adı en fazla 32 karakter olabilir!",
+               error: true
             }
          }
       }
@@ -19,13 +23,15 @@ module.exports = {
       if (email) {
          if (email.length < 3) {
             return {
-               message: "E-Posta en az 3 karatker olabilir!"
+               message: "E-Posta en az 3 karatker olabilir!",
+               error: true
             }
          }
 
          if (email.length > 256) {
             return {
-               message: "E-Posta en fazla 256 karakter olabilir!"
+               message: "E-Posta en fazla 256 karakter olabilir!",
+               error: true
             }
          }
       }
@@ -34,13 +40,15 @@ module.exports = {
 
          if (password.length < 3) {
             return {
-               message: "Şifre ne az 3 karakter olabilir!"
+               message: "Şifre ne az 3 karakter olabilir!",
+               error: true
             }
          }
 
          if (password.length > 128) {
             return {
-               message: "Şifre en fazla 128 karakter olabilir"
+               message: "Şifre en fazla 128 karakter olabilir",
+               error: true
             }
          }
       }
@@ -56,6 +64,52 @@ module.exports = {
          })
       } catch (error) {
          resolve(false)
+         console.log(error)
+      }
+   }),
+   loginUser: async ({ body }) => new Promise((resolve) => {
+      try {
+         const { email, password } = body
+         User.findOne({ email: email }).then(user => {
+            if (user) {
+               passwordDecode({ pw: password, reelpw: user.password }).then(match => {
+                  if (match) {
+                     tokenEncode({
+                        name: user.name,
+                        email: user.email,
+                        id: user.id
+                     }).then(token => {
+                        resolve({
+                           error: false,
+                           message: "Giriş Başarılı",
+                           token: token,
+                           user: {
+                              _id: user._id,
+                              name: user.name,
+                              email: user.email,
+                              date: user.date
+                           }
+                        })
+                     })
+                  } else {
+                     resolve({
+                        message: "Şifre yanlış",
+                        error: true
+                     })
+                  }
+               })
+            } else {
+               resolve({
+                  message: "Böyle bir e-posta kayıtlı değil",
+                  error: true
+               })
+            }
+         })
+      } catch (error) {
+         resolve({
+            message: error,
+            error: true
+         })
          console.log(error)
       }
    })
