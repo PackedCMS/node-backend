@@ -1,20 +1,24 @@
+const leftPad = require('left-pad');
 const mongoose = require('mongoose');
+const user_settings = require('../../../settings/user');
 
 const UserSchema = new mongoose.Schema({
+   id: {
+      type: String,
+      default: leftPad((new Date()).getTime() * Math.random() * 100000, 18, 1)
+   },
    name: {
       type: String,
       required: true,
-      maxlength: 32,
+      maxlength: user_settings.max_name_lenght,
    },
    email: {
       type: String,
       required: true,
-      maxlength: 200,
+      maxlength: user_settings.max_email_lenght,
    },
-   perm: {
-      type: String,
-      required: true,
-      default: "0"
+   perms: {
+      type: Array,
    },
    admin: {
       type: Boolean,
@@ -27,15 +31,27 @@ const UserSchema = new mongoose.Schema({
    password: {
       type: String,
       required: true,
-      maxlength: 200,
+      maxlength: user_settings.max_password_lenght,
    },
    avatar: {
       type: String,
-      default: "https://cdn.discordapp.com/attachments/894953448053825597/895320491273887765/default-avatar.png"
+      default: user_settings.default_avatar
    },
    banner: {
       type: String,
-      default: "https://cdn.discordapp.com/attachments/894953448053825597/895320491273887765/default-avatar.png"
+      default: user_settings.default_banner
+   },
+   followers: {
+      type: Array
+   },
+   followings: {
+      type: Array
+   },
+   saved: {
+      type: Array,
+      default: {
+         "Kaydedilenler": []
+      }
    },
    deleted: {
       type: Boolean,

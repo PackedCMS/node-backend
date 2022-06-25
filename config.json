@@ -20,5 +20,12 @@
       "max_slug_lenght": 64,
       "max_content_lenght": 50000,
       "max_keywords_lenght": 5000
+    },
+    "user": {
+      "default_avatar": "",
+      "default_banner": "",
+      "max_name_lenght": 64,
+      "max_email_lenght": 200,
+      "max_password_lenght": 200
     }
  }
