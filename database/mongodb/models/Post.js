@@ -1,10 +1,11 @@
 const mongoose = require('mongoose');
+const { getId } = require('../../../services/id/get');
 const post_settings = require('../../../settings/post');
 
 const PostSchema = new mongoose.Schema({
    id: {
       type: String,
-      default: leftPad((new Date()).getTime() * Math.random() * 100000, 18, 1)
+      default: getId()
    },
    name: {
       type: String,

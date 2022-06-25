@@ -1,11 +1,11 @@
-const leftPad = require('left-pad');
 const mongoose = require('mongoose');
+const { getId } = require('../../../services/id/get');
 const user_settings = require('../../../settings/user');
 
 const UserSchema = new mongoose.Schema({
    id: {
       type: String,
-      default: leftPad((new Date()).getTime() * Math.random() * 100000, 18, 1)
+      default: getId()
    },
    name: {
       type: String,
