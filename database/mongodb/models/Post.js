@@ -5,7 +5,12 @@ const PostSchema = new mongoose.Schema({
    name: {
       type: String,
       required: true,
-      maxlength: 64,
+      maxlength: post_settings.max_name_lenght,
+   },
+   slug: {
+      type: String,
+      required: true,
+      maxlength: post_settings.max_slug_lenght,
    },
    main_image: {
       type: String,
@@ -20,24 +25,27 @@ const PostSchema = new mongoose.Schema({
    audios: {
       type: Array,
    },
-   comments: {
+   reactions: {
       type: Array,
    },
-   keywords: {
-      type: String,
-      maxlength: 5000,
-   },
-   content: {
-      type: String,
-      maxlength: 50000
-   },
-   draft: {
-      type: Boolean,
-      default: true,
+   comments: {
+      type: Array,
    },
    views: {
       type: Number,
       default: 0,
+   },
+   keywords: {
+      type: String,
+      maxlength: post_settings.max_keywords_lenght,
+   },
+   content: {
+      type: String,
+      maxlength: post_settings.max_content_lenght
+   },
+   draft: {
+      type: Boolean,
+      default: true,
    },
    changes: {
       type: Array,

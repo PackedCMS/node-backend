@@ -15,6 +15,10 @@
     "post": {
       "default_image": "https://cdn.discordapp.com/attachments/959810347747921940/990261363555315765/unknown.png",
       "max_changes_size": 10,
-      "max_deleted_day": 30
+      "max_deleted_day": 30,
+      "max_name_lenght": 64,
+      "max_slug_lenght": 64,
+      "max_content_lenght": 50000,
+      "max_keywords_lenght": 5000
     }
  }
