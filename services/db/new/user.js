@@ -1,5 +1,6 @@
 const { dbNew } = require("../../../database/actions")
-const { users } = require("../../../database/models")
+const { users, usersmedia } = require("../../../database/models")
+const User = require("../../../database/mongodb/models/User")
 const { userIsThere } = require("../../checkers/user")
 const { passwordEncode } = require("../../crypto/encode")
 const { tokenEncode } = require("../../jwt/encode")
@@ -28,16 +29,24 @@ module.exports = {
                         email: user.email,
                         date: user.date
                      }).then(token => {
-                        resolve({
-                           error: false,
-                           message: "Kullanıcı başarılı bir şekilde oluşturuldu!",
-                           token: token,
-                           user: {
-                              id: user.id,
-                              name: user.name,
-                              email: user.email,
-                              date: user.date
-                           }
+                        dbNew({ data: { author: user.id }, col: usersmedia }).then(response => {
+                           const media = response.data
+                           User.findOne({ id: user.id }).then(user => {
+                              user.media = media.id,
+                                 user.save().then(() => {
+                                    resolve({
+                                       error: false,
+                                       message: "Kullanıcı başarılı bir şekilde oluşturuldu!",
+                                       token: token,
+                                       user: {
+                                          id: user.id,
+                                          name: user.name,
+                                          email: user.email,
+                                          date: user.date
+                                       }
+                                    })
+                                 })
+                           })
                         })
                      })
                   } else {

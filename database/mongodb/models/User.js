@@ -32,13 +32,8 @@ const UserSchema = new mongoose.Schema({
       required: true,
       maxlength: user_settings.max_password_lenght,
    },
-   avatar: {
+   media: {
       type: String,
-      default: user_settings.default_avatar
-   },
-   banner: {
-      type: String,
-      default: user_settings.default_banner
    },
    followers: {
       type: Array

@@ -1,4 +1,5 @@
-const User = require("../../database/mongodb/models/User")
+const { dbFindOne } = require("../../database/actions")
+const { users } = require("../../database/models")
 const { passwordDecode } = require("../crypto/decode")
 const { tokenEncode } = require("../jwt/encode")
 
@@ -8,7 +9,8 @@ module.exports = {
    loginUser: async ({ body }) => new Promise((resolve) => {
       try {
          const { email, password } = body
-         User.findOne({ email: email }).then(user => {
+         dbFindOne({ data: { email: email }, col: users }).then(response => {
+            const user = response.data
             if (user) {
                passwordDecode({ pw: password, reelpw: user.password }).then(match => {
                   if (match) {
