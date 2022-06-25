@@ -11,5 +11,8 @@
     "panel": {
        "user": "admin",
        "pw": "admin"
+    },
+    "post": {
+      "default_image": "https://cdn.discordapp.com/attachments/959810347747921940/990261363555315765/unknown.png"
     }
  }
