@@ -17,6 +17,12 @@ const PostSchema = new mongoose.Schema({
    videos: {
       type: Array,
    },
+   audios: {
+      type: Array,
+   },
+   comments: {
+      type: Array,
+   },
    keywords: {
       type: String,
       maxlength: 5000,
@@ -27,7 +33,25 @@ const PostSchema = new mongoose.Schema({
    },
    draft: {
       type: Boolean,
-      default: true
+      default: true,
+   },
+   views: {
+      type: Number,
+      default: 0,
+   },
+   changes: {
+      type: Array,
+   },
+   last_edit: {
+      type: Date,
+      default: Date.now()
+   },
+   date: {
+      type: Date,
+      default: Date.now()
+   },
+   delete_date: {
+      type: Date,
    }
 });
 

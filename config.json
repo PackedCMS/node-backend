@@ -13,6 +13,8 @@
        "pw": "admin"
     },
     "post": {
-      "default_image": "https://cdn.discordapp.com/attachments/959810347747921940/990261363555315765/unknown.png"
+      "default_image": "https://cdn.discordapp.com/attachments/959810347747921940/990261363555315765/unknown.png",
+      "max_changes_size": 10,
+      "max_deleted_day": 30
     }
  }
