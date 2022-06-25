@@ -27,23 +27,13 @@ module.exports = {
          try {
             col.findOne(data).then(data => {
                if (!data) {
-                  resolve({
-                     message: "Veri Bulunamadı",
-                     error: true
-                  })
+                  resolve(null)
                } else {
-                  resolve({
-                     message: "Veri başarılı bir şekilde bulundu!",
-                     data: data,
-                     error: false
-                  })
+                  resolve(data)
                }
             })
          } catch (error) {
-            resolve({
-               message: "Hata oluştu",
-               error: true
-            })
+            throw error
          }
       }
    }),
@@ -52,23 +42,13 @@ module.exports = {
          try {
             col.find(data).sort(sort).skip(skip).limit(limit).then(data => {
                if (!data) {
-                  resolve({
-                     message: "Veri Bulunamadı",
-                     error: true
-                  })
+                  resolve(null)
                } else {
-                  resolve({
-                     message: "Veri başarılı bir şekilde bulundu!",
-                     data: data,
-                     error: false
-                  })
+                  resolve(data)
                }
             })
          } catch (error) {
-            resolve({
-               message: "Hata oluştu",
-               error: true
-            })
+            throw error
          }
       }
    })

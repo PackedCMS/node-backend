@@ -9,8 +9,7 @@ module.exports = {
    loginUser: async ({ body }) => new Promise((resolve) => {
       try {
          const { email, password } = body
-         dbFindOne({ data: { email: email }, col: users }).then(response => {
-            const user = response.data
+         dbFindOne({ data: { email: email }, col: users }).then(user => {
             if (user) {
                passwordDecode({ pw: password, reelpw: user.password }).then(match => {
                   if (match) {

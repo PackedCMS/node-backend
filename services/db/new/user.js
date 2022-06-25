@@ -1,4 +1,4 @@
-const { dbNew } = require("../../../database/actions")
+const { dbNew, dbFindOne } = require("../../../database/actions")
 const { users, usersmedia } = require("../../../database/models")
 const User = require("../../../database/mongodb/models/User")
 const { userIsThere } = require("../../checkers/user")
@@ -31,7 +31,7 @@ module.exports = {
                      }).then(token => {
                         dbNew({ data: { author: user.id }, col: usersmedia }).then(response => {
                            const media = response.data
-                           User.findOne({ id: user.id }).then(user => {
+                           dbFindOne({ data: { id: user.id }, col: users }).then(user => {
                               user.media = media.id,
                                  user.save().then(() => {
                                     resolve({

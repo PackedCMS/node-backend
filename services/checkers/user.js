@@ -1,8 +1,5 @@
 const { dbFindOne } = require("../../database/actions")
 const { users } = require("../../database/models")
-const User = require("../../database/mongodb/models/User")
-const { passwordDecode } = require("../crypto/decode")
-const { tokenEncode } = require("../jwt/encode")
 
 module.exports = {
    userPostCheck: async ({ name, email, password }) => {
@@ -57,8 +54,8 @@ module.exports = {
    },
    userIsThere: async ({ name, email }) => new Promise((resolve) => {
       try {
-         dbFindOne({ data: { "$or": [{ name: name }, { email: email }] }, col: users }).then(response => {
-            if (response.data) {
+         dbFindOne({ data: { "$or": [{ name: name }, { email: email }] }, col: users }).then(user => {
+            if (user) {
                resolve(true)
             } else {
                resolve(false)
