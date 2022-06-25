@@ -5,7 +5,7 @@ const post_settings = require('../../../settings/post');
 const PostSchema = new mongoose.Schema({
    id: {
       type: String,
-      default: getId()
+      default: Date.now
    },
    name: {
       type: String,
@@ -61,11 +61,11 @@ const PostSchema = new mongoose.Schema({
    },
    last_edit: {
       type: Date,
-      default: Date.now()
+      default: Date.now
    },
    date: {
       type: Date,
-      default: Date.now()
+      default: Date.now
    },
    delete_date: {
       type: Date,

@@ -5,7 +5,7 @@ const user_settings = require('../../../settings/user');
 const UserSchema = new mongoose.Schema({
    id: {
       type: String,
-      default: getId()
+      default: Date.now
    },
    name: {
       type: String,
