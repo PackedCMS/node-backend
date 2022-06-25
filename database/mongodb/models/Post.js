@@ -16,6 +16,10 @@ const PostSchema = new mongoose.Schema({
       type: String,
       default: post_settings.default_image
    },
+   author: {
+      type: String,  
+      required: true
+   },
    images: {
       type: Array,
    },
