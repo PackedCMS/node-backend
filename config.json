@@ -22,8 +22,8 @@
       "max_keywords_lenght": 5000
     },
     "user": {
-      "default_avatar": "",
-      "default_banner": "",
+      "default_avatar": "https://avatars.githubusercontent.com/u/92321252?s=280&v=4",
+      "default_banner": "https://avatars.githubusercontent.com/u/92321252?s=280&v=4",
       "max_name_lenght": 64,
       "max_email_lenght": 200,
       "max_password_lenght": 200
