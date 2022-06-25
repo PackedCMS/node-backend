@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const { getId } = require('../../../services/id/get');
 const post_settings = require('../../../settings/post');
 
 const PostSchema = new mongoose.Schema({

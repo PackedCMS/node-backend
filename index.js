@@ -1,9 +1,7 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
-const leftPad = require('left-pad')
 const db_connect = require('./database/connection.js');
-const { getId } = require('./services/id/get.js');
 
 db_connect().then(res => console.log(res))
 

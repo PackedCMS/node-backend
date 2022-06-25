@@ -1,5 +1,6 @@
 const express = require('express');
-const { userPostCheck, loginUser } = require('../services/checkers/user');
+const { loginUser } = require('../services/auth/login');
+const { userPostCheck } = require('../services/checkers/user');
 const { newUser } = require('../services/db/new/user');
 const router = express.Router();
 

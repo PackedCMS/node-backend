@@ -23,7 +23,7 @@ module.exports = {
                   if (response.error === false) {
                      const user = response.data
                      tokenEncode({
-                        _id: user._id,
+                        id: user.id,
                         name: user.name,
                         email: user.email,
                         date: user.date
@@ -33,7 +33,7 @@ module.exports = {
                            message: "Kullanıcı başarılı bir şekilde oluşturuldu!",
                            token: token,
                            user: {
-                              _id: user._id,
+                              id: user.id,
                               name: user.name,
                               email: user.email,
                               date: user.date
